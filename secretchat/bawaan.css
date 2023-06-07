@@ -1,0 +1,54 @@
+.chat-bubble {
+
+    max-width:max-content; 
+          }
+          .like-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    font-size: 14px;
+    color: blue;
+    text-decoration: underline;
+}
+
+.like-button.clicked {
+    color: red;
+    text-decoration: none;
+}
+
+.like-counter {
+    margin-left: 5px;
+}
+.system-message {
+      color: gray;
+    }
+
+    .own-message {
+      color: blue;
+    }
+
+    .other-message {
+      color: green;
+    }
+        #chatbox {
+            
+            height: 450px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: scroll;
+        }
+        #input-box {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .message {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .message.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
