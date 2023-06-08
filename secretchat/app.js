@@ -12,14 +12,30 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // Mendapatkan ID pengguna saat ini
-var currentUserId = "";
+        // Mendapatkan ID pengguna saat ini dari localStorage atau menghasilkan yang baru jika tidak ada
+        var currentUserId = localStorage.getItem("currentUserId");
+        if (!currentUserId) {
+            currentUserId = generateUsername();
+            localStorage.setItem("currentUserId", currentUserId);
+        }
 
-// Fungsi untuk menghasilkan username acak
-function generateRandomUsername() {
-    var randomId = Math.random().toString(36).substr(2, 5); // Menghasilkan ID acak dengan 5 karakter
-    currentUserId = "user" + randomId;
-    document.getElementById("username-input").value = currentUserId; // Menampilkan username pada input
-}
+        // Mengisi nilai input nama pengguna dari localStorage atau menghasilkan yang baru jika tidak ada
+        var usernameInput = document.getElementById("username-input");
+        var currentUsername = localStorage.getItem("currentUsername");
+        if (currentUsername) {
+            usernameInput.value = currentUsername;
+        } else {
+            currentUsername = generateUsername();
+            usernameInput.value = currentUsername;
+            localStorage.setItem("currentUsername", currentUsername);
+        }
+
+        // Fungsi untuk menghasilkan username berdasarkan waktu saat ini
+        function generateUsername() {
+            var date = new Date();
+            var username = "user" + date.getTime(); // Menggunakan timestamp saat ini sebagai username
+            return username;
+        }
 
 // Referensi database
 var messagesRef = firebase.database().ref("messages");
