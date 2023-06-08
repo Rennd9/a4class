@@ -175,7 +175,7 @@ function sendMessage() {
 
     const Toast = Swal.mixin({
       toast: true,
-      position: 'bottom-start',
+      position: 'top-end',
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
@@ -205,6 +205,28 @@ document.addEventListener("keydown", function(event) {
     sendMessage();
   }
 });
+function copyURL() {
+  var url = window.location.href;
+
+  var tempInput = document.createElement("input");
+  tempInput.value = url;
+  document.body.appendChild(tempInput);
+
+  tempInput.select();
+  tempInput.setSelectionRange(0, 99999); // Untuk dukungan browser yang berbeda
+  document.execCommand("copy");
+
+  document.body.removeChild(tempInput);
+
+  Swal.fire({
+    title: "URL telah disalin",
+    text: url,
+    icon: "success",
+    timer: 2000,
+    timerProgressBar: true,
+    showConfirmButton: false
+  });
+}
 // Live counter
 messagesRef.on("value", function(snapshot) {
   var count = snapshot.numChildren();
