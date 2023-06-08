@@ -1,18 +1,28 @@
-    // Inisialisasi Firebase
-    var firebaseConfig = {
-      apiKey: "AIzaSyAJ07znAPQJb1B8S8oObzrBdm6aAfJGLD0",
-      databaseURL: "https://a4class-42e4b-default-rtdb.asia-southeast1.firebasedatabase.app/",
-        authDomain: "a4class-42e4b.firebaseapp.com",
-        projectId: "a4class-42e4b",
-        storageBucket: "a4class-42e4b.appspot.com",
-        messagingSenderId: "369425879931",
-        appId: "1:369425879931:web:5b42e153530645478123de"
-    };
+// Inisialisasi Firebase
+var firebaseConfig = {
+  apiKey: "AIzaSyAJ07znAPQJb1B8S8oObzrBdm6aAfJGLD0",
+  databaseURL: "https://a4class-42e4b-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  authDomain: "a4class-42e4b.firebaseapp.com",
+  projectId: "a4class-42e4b",
+  storageBucket: "a4class-42e4b.appspot.com",
+  messagingSenderId: "369425879931",
+  appId: "1:369425879931:web:5b42e153530645478123de"
+};
 
-    firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-        // Referensi database
-        var messagesRef = firebase.database().ref("messages");
+// Mendapatkan ID pengguna saat ini
+var currentUserId = "";
+
+// Fungsi untuk menghasilkan username acak
+function generateRandomUsername() {
+    var randomId = Math.random().toString(36).substr(2, 5); // Menghasilkan ID acak dengan 5 karakter
+    currentUserId = "user" + randomId;
+    document.getElementById("username-input").value = currentUserId; // Menampilkan username pada input
+}
+
+// Referensi database
+var messagesRef = firebase.database().ref("messages");
 
 // Fungsi untuk menyimpan pesan ke Firebase
 function saveMessage(message) {
@@ -129,58 +139,6 @@ messagesRef.on("child_changed", function(snapshot) {
   }
 });
 
-// Fungsi untuk bergabung ke chat
-function joinChat() {
-  if (currentUserId !== "") {
-    chatRef.push({
-      message: currentUserId + " bergabung dalam chat",
-      sender: "system"
-    });
-  }
-}
-
-// Mendapatkan pesan terakhir pengguna saat refresh
-function getLastMessageId() {
-  var chatbox = document.getElementById("chatbox");
-  var lastMessage = chatbox.lastElementChild;
-  if (lastMessage) {
-    return lastMessage.getAttribute("data-sender-id");
-  }
-  return null;
-}
-
-function addNewMessage(message, senderId) {
-  var newMessage = document.createElement("div");
-  newMessage.className = "chat chat-start";
-  newMessage.setAttribute("data-sender-id", senderId);
-
-  if (senderId === currentUserId) {
-    newMessage.classList.add("justify-end");
-    messageContent.classList.add("text-right");
-    newMessage.appendChild(avatar);
-    newMessage.appendChild(messageContent);
-  } else {
-    newMessage.classList.add("justify-start");
-    newMessage.appendChild(avatar);
-    newMessage.appendChild(messageContent);
-  }
-  var chatbox = document.getElementById("chatbox");
-  chatbox.appendChild(newMessage);
-
-  scrollToBottom();
-}
-
-// Mendapatkan ID pengguna saat ini
-var currentUserId = localStorage.getItem("currentUserId");
-
-// Mendengarkan perubahan pada database Firebase
-messagesRef.on("child_added", function(snapshot) {
-  var message = snapshot.val().message;
-  var senderId = snapshot.val().senderId;
-
-  addNewMessage(message, senderId);
-});
-
 // Scroll ke pesan terakhir saat halaman dimuat
 window.onload = function() {
   scrollToBottom();
@@ -207,11 +165,11 @@ document.addEventListener("keydown", function(event) {
     sendMessage();
   }
 });
-  // Live counter
-  messagesRef.on("value", function(snapshot) {
-    var count = snapshot.numChildren();
-    document.getElementsByClassName("counter")[0].innerHTML = "Jumlah Pesan: " + count;
-  });
+// Live counter
+messagesRef.on("value", function(snapshot) {
+  var count = snapshot.numChildren();
+  document.getElementsByClassName("counter")[0].innerHTML = "Jumlah Pesan: " + count;
+});
 // Mendapatkan referensi ke elemen input
 var inputBox = document.getElementById("input-box");
 
