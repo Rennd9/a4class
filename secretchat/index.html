@@ -6,28 +6,30 @@
     <title>A4Class SECRET</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.0.3/dist/full.css" rel="stylesheet" type="text/css" />
     <link href="bawaan.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <div class="container mx-auto p-8">
     <h1 class="text-3xl font-bold mb-4">A4 CLASS Chat SECRET POEPLE</h1>
     <div class="alert alert-info">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-      <p>INGAT Ya Gaes!, Dalam Web Chat LIVE ini Masih Tahap Veri <span style="color:yellow;">BETA</span> Belum <span style="color:red;">RELEASE</span>, Karena Saya Sendiri Yang Buat Butuh Waktu Untuk Update Kedepannya.
+      <p>INGAT Ya Gaes!, Dalam Web Chat LIVE ini Masih Tahap Versi <span style="color:yellow;">BETA</span> Belum <span style="color:red;">RELEASE</span>, Karena Saya Sendiri Yang Buat Butuh Waktu Untuk Update Kedepannya.
         <br/>
          Untuk Kasih Saran Atau Ada Masalah Halaman Ini, Silahkan Hubungi Kreator Web DEVnya <a role='button' href='https://wa.me/6282387712300?text=halo%20bre%2C%20gw%20ni%20ada%20saran%20ni%2C%20boleh%20chat%20sebentar...%3F' class="btn btn-success btn-sm">Disini Chat WhatsApp</a>
       </p>
     </div>
     <br/>
     <div class="badge badge-neutral counter" >Jumlah Pesan: <span id="count" class="loading loading-ring loading-xs"></span>   
+
      </div>
     <br/>
+    <p>Jumlah pengguna online: <span id="online-count"></span></p>
+
     <br/>
     <div id="chatbox" class="p-6 mb-6"></div>
     <div id="counter" class="mt-4 text-gray-500"></div>
     <input type="text" id="username-input" class="input input-bordered w-full p-2" disabled />
 
-    <input type="text" id="input-box" placeholder="Buat Pesan Lo Mau MAX Karakter 350 Biji" class="input input-bordered" />
+    <input type="text" id="input-box" placeholder="Buat Pesan Lo Mau MAX Karakter 350 Aku Batasin..." class="input input-bordered" />
     <br/>
     <br/>
     <button onclick="sendMessage()" class="px-4 py-2 bg-blue-500 text-white rounded">⇄ Kirim Pesan</button>
@@ -38,5 +40,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
 
     <script src="app.js" type="text/javascript"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </body>
 </html>
