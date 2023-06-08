@@ -11,7 +11,6 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// Mendapatkan ID pengguna saat ini
         // Mendapatkan ID pengguna saat ini dari localStorage atau menghasilkan yang baru jika tidak ada
         var currentUserId = localStorage.getItem("currentUserId");
         if (!currentUserId) {
@@ -173,8 +172,33 @@ function sendMessage() {
   if (message !== "") {
     saveMessage(message);
     inputBox.value = "";
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Yatta, Pesan Suksess Dikirim 💋'
+    })
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Pesan Kosong',
+      text: 'Mohon isi pesan sebelum mengirim.',
+      confirmButtonText: 'OK'
+    });
   }
 };
+
 // Menambahkan event listener untuk tombol Enter
 document.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
