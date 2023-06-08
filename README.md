@@ -2,7 +2,7 @@
 
 With Coding:
 ```
-CSS Framework Tailwind / daisyUi and Bootsrap v5.3
+CSS Framework Tailwind / daisyUi and Bootstrap v5.3
 HTML Basic
 Javascript And Framework SweetalertJS With CDN
 Firebase Express API
