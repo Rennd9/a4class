@@ -34,14 +34,11 @@
     }
         #chatbox {
             
-            height: 450px;
-            border: 1px solid #ccc;
+            height: 550px;
             padding: 10px;
             overflow-y: scroll;
-        }
-        #input-box {
-            width: 100%;
-            margin-top: 10px;
+            
+            
         }
         .message {
         opacity: 0;
@@ -51,6 +48,9 @@
     .message.visible {
         opacity: 1;
         transform: translateY(0);
+    }
+    body::-webkit-scrollbar {
+      display: none;
     }
     /*
 * @sweetalert2/themes v4.0.5
